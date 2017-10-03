@@ -27,4 +27,29 @@ router.get('/', function (req,res){
   });
 });
 
+// Get a single user from the database
+router.get('/:id', function (req, res) {
+  User.findById(req.params.id, function (err, user) {
+    if (err) return res.status(500).send(err);
+    if (!user) return res.status(404).send("No user found");
+    res.status(200).send(user);
+  });
+});
+
+// Delete a user from the database
+router.delete('/:id', function (req, res) {
+  User.findByIdAndRemove(req.params.id, function (err, user) {
+    if (err) return res.status(500).send(err);
+    res.status(200).send("User "+ user.name +" was deleted.");
+  });
+});
+
+// Updates a single user in the databae
+router.put('/:id', function (req, res) {
+  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
+    if (err) return res.status(500).send(err);
+    res.status(200).send(user);
+  });
+});
+
 module.exports = router;
