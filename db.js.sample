@@ -1,0 +1,8 @@
+// db.js
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://yourMongoDBURIGoesHere', err => {
+  if (err) {
+    console.log(err);
+    return;
+  } else {console.log('Database connected')};
+});
