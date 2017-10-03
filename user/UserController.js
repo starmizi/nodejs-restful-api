@@ -44,7 +44,7 @@ router.delete('/:id', function (req, res) {
   });
 });
 
-// Updates a single user in the databae
+// Updates a single user in the database
 router.put('/:id', function (req, res) {
   User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
     if (err) return res.status(500).send(err);
